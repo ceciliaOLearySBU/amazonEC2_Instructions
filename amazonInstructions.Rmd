@@ -1,0 +1,126 @@
+---
+title: "Amazon EC2 for Ecologists Running Bayesian Models"
+author: "Cecilia O'Leary and Phil McDowall"
+date: "July 2016"
+output: html_document
+---
+
+While we watched our colleagues Chris and Ben take the spindly road of SSH and terminal commands, herein lies the saga of an Ecologist navigating the road of computational biology but avoiding the fork towards computer science. Follow this guide step by step and you will have a model running on a server with little understanding of what is happening.
+
+#**Beginning Amazon EC2 instance**
+
+###1. open [amazon EC2 console](https://console.aws.amazon.com/ec2/)
+
+###2. select "launch instance"
+###3. select location on top right drop down menu
+###4. select "community AMIs" on left tab
+###5. find Rstudio server AMI appropriate for your location and needs 
+    e.g. http://www.louisaslett.com/RStudio_AMI/, I used the "ami-0acd2067" server for US east coast, VA. This 
+    server has Rstudio, jags, dropbox, github amongst other things already installed.
+    (if you need something else, there are plenty of other servers to choose from. if you 
+    feel so inclined, you can use a linux based AMI and install everything yourself)
+
+&nbsp;
+&nbsp;
+![](figure1.png)
+&nbsp;
+&nbsp;
+    
+###6. select the t2.micro general instance type (free tier eligible)
+&nbsp;
+&nbsp;
+![](figure2.png)
+&nbsp;
+&nbsp;
+###7. under configure instance details: select "Terminate" under shutdown behavior. Leave the rest of the options.
+###8. leave storage and tag options alone.
+###9. select "create a new security group" and http" security group to access AMI via browser (port 80) or ssh (port 22)
+
+&nbsp;
+&nbsp;
+![](figure3.png)
+&nbsp;
+&nbsp;
+
+###10. select "review and launch" and then "launch"
+###11. select "create a new key pair" in the pop up window and select "download key pair"
+
+&nbsp;
+&nbsp;
+![](figure4.png)
+&nbsp;
+&nbsp;
+###12. Launch instance.
+###13. To stop (pause) your instance, go to the "Actions Menu" at the top of the instance list, go down to "instance state" and then hit "stop". Select "start" to resume instance.
+&nbsp;
+&nbsp;
+![](figure5.png)
+&nbsp;
+&nbsp;
+###14. To interact with and run your instance in your browser, scroll down to your "Public DNS", copy and paste the string there, and paste in your browser of choice
+###15. the login info is username: rstudio, password: rstudio 
+###16. start your work!
+###17. to automatically stop your instance when model run is complete:
+    -on your instance page select the alarm icon under "alarm status"
+    -create an alarm:
+      + check box next to "send notification to"
+      + select create topic next to "send notification to"
+      + create topic name
+      + send notificaton to: your email
+      + check box next to "take the action"
+      + select what you want to happen when model is running. Most likely you want "stop this instance". 
+      Don't mistake it for "terminate this instance" which will just delete everything that you did
+      +complete when you want the notification and stop to happen. I've found that "Whenever *Average* 
+      of *CPU Utilization* is *< 10%* for at least *1* consecutive period of *15*        
+      *minutes*" seems to work pretty well for my purposes, but you may want a longer amount of time of 
+      inactivity depending on what it is you're doing.I've found that I don't work fast enough in setting 
+      up my model runs to go with the 5 minute interval of inactivity for instance stopping.
+
+&nbsp;
+&nbsp;
+![](figure10.png)
+&nbsp;
+&nbsp;
+
+#**A bit of code to export your model results to Dropbox**
+
+
+#**Accessing Amazon EC2 via SSH on a PC (if you desperately wish to know how)**
+
+###1. install [PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)
+###2. download [PuTTYgen](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)
+###3. convert your .txt key file to a .ppk file that PuTTY can use
+    -select the "load" button and load your saved key file. (what you saved in step 11 of the first section) 
+    you may need to change file type to all files to see the .txt file.
+    -save as private key (.ppk) - this file name needs to be *EXACTLY THE SAME* as they key that you saved in 
+    step 11 above, otherwise an error occurs later in your PuTTY connection
+    -close PuTTYgen
+    
+&nbsp;
+&nbsp;
+![](figure6.png)
+&nbsp;
+&nbsp;
+
+###4. open PuTTY
+###5. host name (specific to the Rstudio server AMI): \S rstudio@public_dns_name
+    (public dns will only show if instance is running)
+    connection type: ssh
+    port: 22
+    
+&nbsp;    
+&nbsp;    
+![My Figure](figure7.png)
+&nbsp;
+&nbsp;
+
+###6. Go to the Category pane on left --> expand Connection --> expand SSH --> select "Auth"
+###7. under "Auth", click "Browse", select the .ppk file that you generated using PuTTYgen, click "Open".
+###8. (Optional) to save the session information for future use, select Session in the Category tree, enter a name for the session in Saved Sessions, and then click Save. To reload, select the session then hit the "load".
+###9. Click "Open" to start the PuTTY session.
+###10. Putty security alert comes up, hit yes (if you trust the server).
+
+&nbsp;
+&nbsp;
+![My Figure](figure8.png)
+&nbsp;

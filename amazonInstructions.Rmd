@@ -90,11 +90,15 @@ Go to File --> new project --> version control --> git --> enter repository URL 
 enter your github details (username, password) as usual.
 
 #**A bit of code to export your model results to Dropbox**
+This code needs to be run before uploading any projects from github because of the way that the function was written by the AMI creator.
 ```{r}
 linkDropbox() #open a tab to allow access
 excludeSyncDropbox("*") #stop syncing everything
 includeSyncDropBox("dropboxFolderName") #sync the folder that you want to upload your results to
-save(file="Dropbox/folderName/outputFileName.Rdata", list="nameOfJagsOutput") #save model output in that folder on dropbox
+```
+This bit of code can go at the end of your model to save your model run(s) in your dropbox.
+```{r}
+save(file="~/Dropbox/folderName/outputFileName.Rdata", list="nameOfJagsOutput") #save model output in that folder on dropbox
 ```
 #**Accessing Amazon EC2 via SSH on a PC (if you desperately wish to know how)**
 

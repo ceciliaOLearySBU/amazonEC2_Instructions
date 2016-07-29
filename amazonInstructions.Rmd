@@ -76,7 +76,7 @@ you to provide the existing password and then type in a new password)
       *minutes*" seems to work pretty well for my purposes, but you may want a longer amount of time of 
       inactivity depending on what it is you're doing.I've found that I don't work fast enough in setting 
       up my model runs to go with the 5 minute interval of inactivity for instance stopping.
-
+I recommend not setting an alarm until you've set everything up and have it running as setup work tends to not use much CPU.
 &nbsp;
 &nbsp;
 ![](figure10.png)
@@ -92,6 +92,7 @@ enter your github details (username, password) as usual.
 #**A bit of code to export your model results to Dropbox**
 This code needs to be run before uploading any projects from github because of the way that the function was written by the AMI creator.
 ```{r}
+require(RStudioAMI)
 linkDropbox() #open a tab to allow access
 excludeSyncDropbox("*") #stop syncing everything
 includeSyncDropBox("dropboxFolderName") #sync the folder that you want to upload your results to

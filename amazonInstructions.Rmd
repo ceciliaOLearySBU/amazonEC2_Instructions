@@ -58,7 +58,8 @@ While we watched our colleagues Chris and Ben take the spindly road of SSH and t
 &nbsp;
 &nbsp;
 ###14. To interact with and run your instance in your browser, scroll down to your "Public DNS", copy and paste the string there, and paste in your browser of choice
-###15. the login info is username: rstudio, password: rstudio 
+###15. the login info is username: rstudio, password: rstudio (if you would like to change the password use passwd(), it will prompt
+you to provide the existing password and then type in a new password)
 ###16. start your work!
 ###17. to automatically stop your instance when model run is complete:
     -on your instance page select the alarm icon under "alarm status"

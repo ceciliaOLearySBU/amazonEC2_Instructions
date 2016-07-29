@@ -82,9 +82,19 @@ While we watched our colleagues Chris and Ben take the spindly road of SSH and t
 &nbsp;
 &nbsp;
 
+#**To bring in your R files from github**
+Do this exactly as you normally would when starting a project in R:
+Go to File --> new project --> version control --> git --> enter repository URL (can get this via green
+"clone or download" button on top right of github repository) --> create project --> you will have to 
+enter your github details (username, password) as usual.
+
 #**A bit of code to export your model results to Dropbox**
-
-
+```{r}
+linkDropbox() #open a tab to allow access
+excludeSyncDropbox("*") #stop syncing everything
+includeSyncDropBox("dropboxFolderName") #sync the folder that you want to upload your results to
+save(file="Dropbox/folderName/outputFileName.Rdata", list="nameOfJagsOutput") #save model output in that folder on dropbox
+```
 #**Accessing Amazon EC2 via SSH on a PC (if you desperately wish to know how)**
 
 ###1. install [PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)

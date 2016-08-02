@@ -83,6 +83,8 @@ I recommend not setting an alarm until you've set everything up and have it runn
 &nbsp;
 &nbsp;
 
+Note: If you use the free tier instance, there is only one core. This means that if you close the tab with your instance, you can not reload it while it is running because it requires a second core for server activity. 
+
 #**To bring in your R files from github**
 Do this exactly as you normally would when starting a project in R:
 Go to File --> new project --> version control --> git --> enter repository URL (can get this via green

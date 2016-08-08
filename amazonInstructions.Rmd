@@ -57,8 +57,7 @@ While we watched our colleagues Chris and Ben take the spindly road of SSH and t
 &nbsp;
 &nbsp;
 ###13. To interact with and run your instance in your browser, scroll down to your "Public DNS", copy and paste the url there, and paste in your browser of choice
-###14. the login info is username: rstudio, password: rstudio (if you would like to change the password use passwd(), it will prompt
-you to provide the existing password and then type in a new password)
+###14. the login info is username: rstudio, password: rstudio (if you would like to change the password use passwd(), it will prompt you to provide the existing password and then type in a new password)
 ###15. start your work!
 ###16. to automatically stop your instance when model run is complete:
     -on your instance page select the alarm icon under "alarm status"
@@ -124,7 +123,7 @@ save(file="~/Dropbox/<folderName>/outputFileName.Rdata", list="nameOfJagsOutput"
 &nbsp;
 
 ###4. open PuTTY
-###5. host name (specific to the Rstudio server AMI): \S rstudio@public_dns_name
+###5. host name (specific to the Rstudio server AMI): rstudio@public_dns_name
     (public dns will only show if instance is running)
     connection type: ssh
     port: 22

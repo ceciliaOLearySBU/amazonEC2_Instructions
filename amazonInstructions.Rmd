@@ -32,6 +32,7 @@ While we watched our colleagues Chris and Ben take the spindly road of SSH and t
 ![](figure2.png)
 &nbsp;
 &nbsp;
+
 ###7. If you don't need a lot of storage space, leave the storage and tag options alone. If you think you might need more than 10gb then you can increase the amount of storage. While the free tier does provide some storage, if you use a lot you may be billed for the extra.
 ###8. select "create a new security group" and http" security group to access AMI via browser (port 80) or ssh (port 22)
 
@@ -49,13 +50,16 @@ While we watched our colleagues Chris and Ben take the spindly road of SSH and t
 ![](figure4.png)
 &nbsp;
 &nbsp;
+
 ###11. Launch instance.
 ###12. To stop (pause) your instance, go to the "Actions Menu" at the top of the instance list, go down to "instance state" and then hit "stop". Select "start" to resume instance. If you "terminate" the instance instead of "stopping" it then any associated storage will be deleted. While an instance is stopped you won't be billed for the instance (except for any associated storage).
+
 &nbsp;
 &nbsp;
 ![](figure5.png)
 &nbsp;
 &nbsp;
+
 ###13. To interact with and run your instance in your browser, scroll down to your "Public DNS", copy and paste the url there, and paste in your browser of choice
 ###14. the login info is username: rstudio, password: rstudio (if you would like to change the password use passwd(), it will prompt you to provide the existing password and then type in a new password)
 ###15. start your work!

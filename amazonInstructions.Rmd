@@ -91,18 +91,18 @@ enter your github details (username, password) as usual.
 
 #**A bit of code to export your model results to Dropbox**
 This code needs to be run before uploading any projects from github because of the way that the function was written by the AMI creator.
-```{r}
+```{r eval=FALSE}
 require(RStudioAMI)
 linkDropbox() #open a tab to allow access
 excludeSyncDropbox("*") #stop syncing everything
 ```
 This will give you a link in the working console to copy over and to give permission to AMI to access dropbox.
 
-```{r}
+```{r eval=FALSE}
 includeSyncDropBox("dropboxFolderName") #sync the folder that you want to upload your results to
 ```
 This bit of code can go at the end of your model to save your model run(s) in your dropbox. Just switch out <foldername> for the directory in your dropbox account you'd like to save to.
-```{r}
+```{r eval=FALSE}
 save(file="~/Dropbox/<folderName>/outputFileName.Rdata", list="nameOfJagsOutput") #save model output in that folder on dropbox
 ```
 #**Accessing Amazon EC2 via SSH on a PC (if you desperately wish to know how)**

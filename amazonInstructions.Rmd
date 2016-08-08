@@ -32,9 +32,8 @@ While we watched our colleagues Chris and Ben take the spindly road of SSH and t
 ![](figure2.png)
 &nbsp;
 &nbsp;
-###7. under configure instance details: select "Terminate" under shutdown behavior. Leave the rest of the options.
-###8. leave storage and tag options alone.
-###9. select "create a new security group" and http" security group to access AMI via browser (port 80) or ssh (port 22)
+###7. If you don't need a lot of storage space, leave the storage and tag options alone. If you think you might need more than 10gb then you can increase the amount of storage. While the free tier does provide some storage, if you use a lot you may be billed for the extra.
+###8. select "create a new security group" and http" security group to access AMI via browser (port 80) or ssh (port 22)
 
 &nbsp;
 &nbsp;
@@ -42,26 +41,26 @@ While we watched our colleagues Chris and Ben take the spindly road of SSH and t
 &nbsp;
 &nbsp;
 
-###10. select "review and launch" and then "launch"
-###11. select "create a new key pair" in the pop up window and select "download key pair"
+###9. select "review and launch" and then "launch"
+###10. select "create a new key pair" in the pop up window and select "download key pair". Keep the downloaded file safe. If you need to use SSH in the future then you will need this key. It will also allow access to your instance so make sure its in a secure place.
 
 &nbsp;
 &nbsp;
 ![](figure4.png)
 &nbsp;
 &nbsp;
-###12. Launch instance.
-###13. To stop (pause) your instance, go to the "Actions Menu" at the top of the instance list, go down to "instance state" and then hit "stop". Select "start" to resume instance.
+###11. Launch instance.
+###12. To stop (pause) your instance, go to the "Actions Menu" at the top of the instance list, go down to "instance state" and then hit "stop". Select "start" to resume instance. If you "terminate" the instance instead of "stopping" it then any associated storage will be deleted. While an instance is stopped you won't be billed for the instance (except for any associated storage).
 &nbsp;
 &nbsp;
 ![](figure5.png)
 &nbsp;
 &nbsp;
-###14. To interact with and run your instance in your browser, scroll down to your "Public DNS", copy and paste the string there, and paste in your browser of choice
-###15. the login info is username: rstudio, password: rstudio (if you would like to change the password use passwd(), it will prompt
+###13. To interact with and run your instance in your browser, scroll down to your "Public DNS", copy and paste the url there, and paste in your browser of choice
+###14. the login info is username: rstudio, password: rstudio (if you would like to change the password use passwd(), it will prompt
 you to provide the existing password and then type in a new password)
-###16. start your work!
-###17. to automatically stop your instance when model run is complete:
+###15. start your work!
+###16. to automatically stop your instance when model run is complete:
     -on your instance page select the alarm icon under "alarm status"
     -create an alarm:
       + check box next to "send notification to"
@@ -83,7 +82,7 @@ I recommend not setting an alarm until you've set everything up and have it runn
 &nbsp;
 &nbsp;
 
-Note: If you use the free tier instance, there is only one core. This means that if you close the tab with your instance, you can not reload it while it is running because it requires a second core for server activity. 
+Note: If you use the free tier instance, there is only one core. This means that if you close the tab while r is running commands, you can not reload it until its finished because the instance is too busy with r tasks to respond to your requests to the server. 
 
 #**To bring in your R files from github**
 Do this exactly as you normally would when starting a project in R:
@@ -103,17 +102,17 @@ This will give you a link in the working console to copy over and to give permis
 ```{r}
 includeSyncDropBox("dropboxFolderName") #sync the folder that you want to upload your results to
 ```
-This bit of code can go at the end of your model to save your model run(s) in your dropbox.
+This bit of code can go at the end of your model to save your model run(s) in your dropbox. Just switch out <foldername> for the directory in your dropbox account you'd like to save to.
 ```{r}
-save(file="~/Dropbox/folderName/outputFileName.Rdata", list="nameOfJagsOutput") #save model output in that folder on dropbox
+save(file="~/Dropbox/<folderName>/outputFileName.Rdata", list="nameOfJagsOutput") #save model output in that folder on dropbox
 ```
 #**Accessing Amazon EC2 via SSH on a PC (if you desperately wish to know how)**
 
 ###1. install [PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)
 ###2. download [PuTTYgen](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)
-###3. convert your .txt key file to a .ppk file that PuTTY can use
-    -select the "load" button and load your saved key file. (what you saved in step 11 of the first section) 
-    you may need to change file type to all files to see the .txt file.
+###3. convert your .pem key file (created back at step 10) to a .ppk file that PuTTY can use
+    -select the "load" button and load your saved key file. (what you saved in step 10 of the first section) 
+    you may need to change file type to all files to see the .pem file.
     -save as private key (.ppk) - this file name needs to be *EXACTLY THE SAME* as they key that you saved in 
     step 11 above, otherwise an error occurs later in your PuTTY connection
     -close PuTTYgen
@@ -141,7 +140,7 @@ save(file="~/Dropbox/folderName/outputFileName.Rdata", list="nameOfJagsOutput") 
 ###8. (Optional) to save the session information for future use, select Session in the Category tree, enter a name for the session in Saved Sessions, and then click Save. To reload, select the session then hit the "load".
 ###9. Click "Open" to start the PuTTY session.
 ###10. Putty security alert comes up, hit yes (if you trust the server).
-
+###11. You are now connected to your instance via ssh and any commands you run in the putty terminal will be executed on the instance.
 &nbsp;
 &nbsp;
 ![My Figure](figure8.png)

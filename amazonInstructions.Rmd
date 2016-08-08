@@ -5,7 +5,7 @@ date: "July 2016"
 output: html_document
 ---
 
-While we watched our colleagues Chris and Ben take the spindly road of SSH and terminal commands, herein lies the saga of an Ecologist navigating the road of computational biology but avoiding the fork towards computer science. Follow this guide step by step and you will have a model running on a server with little understanding of what is happening.
+While we watched our colleagues Chris and Ben take the formidable road of SSH and terminal commands in their [instructions](http://bw4sz.github.io/ec2/), herein lies the saga of an Ecologist navigating the road of computational biology but avoiding the fork towards computer science. Follow this guide step by step and you will have a model running on a server with little understanding of what is happening.
 
 #**Beginning Amazon EC2 instance**
 
@@ -34,7 +34,7 @@ While we watched our colleagues Chris and Ben take the spindly road of SSH and t
 &nbsp;
 
 ###7. If you don't need a lot of storage space, leave the storage and tag options alone. If you think you might need more than 10gb then you can increase the amount of storage. While the free tier does provide some storage, if you use a lot you may be billed for the extra.
-###8. select "create a new security group" and http" security group to access AMI via browser (port 80) or ssh (port 22)
+###8. select "create a new security group" and http" security group to access AMI via browser (port 80) or ssh (port 22). For maximum security you should also set the "source" to be your ip address. This will mean only you can connect to the instance, while leaving it as 0.0.0.0 will mean any one with your public DNS address and login details can connect.
 
 &nbsp;
 &nbsp;
@@ -43,7 +43,7 @@ While we watched our colleagues Chris and Ben take the spindly road of SSH and t
 &nbsp;
 
 ###9. select "review and launch" and then "launch"
-###10. select "create a new key pair" in the pop up window and select "download key pair". Keep the downloaded file safe. If you need to use SSH in the future then you will need this key. It will also allow access to your instance so make sure its in a secure place.
+###10. select "create a new key pair" in the pop up window and select "download key pair". Keep the downloaded file safe. If you need to use SSH in the future then you will need this key. It will also allow access to your instance so make sure it's in a secure place.
 
 &nbsp;
 &nbsp;
@@ -60,7 +60,7 @@ While we watched our colleagues Chris and Ben take the spindly road of SSH and t
 &nbsp;
 &nbsp;
 
-###13. To interact with and run your instance in your browser, scroll down to your "Public DNS", copy and paste the url there, and paste in your browser of choice
+###13. To interact with and run your instance in your browser, scroll down to your "Public DNS", copy the url there, and paste in your browser of choice
 ###14. the login info is username: rstudio, password: rstudio (if you would like to change the password use passwd(), it will prompt you to provide the existing password and then type in a new password)
 ###15. start your work!
 ###16. to automatically stop your instance when model run is complete:
@@ -73,9 +73,9 @@ While we watched our colleagues Chris and Ben take the spindly road of SSH and t
       + check box next to "take the action"
       + select what you want to happen when model is running. Most likely you want "stop this instance". 
       Don't mistake it for "terminate this instance" which will just delete everything that you did
-      +complete when you want the notification and stop to happen. I've found that "Whenever *Average* 
-      of *CPU Utilization* is *< 10%* for at least *1* consecutive period of *15*        
-      *minutes*" seems to work pretty well for my purposes, but you may want a longer amount of time of 
+      +complete when you want the notification and stop to happen. I've found that "Whenever _Average_ 
+      of _CPU Utilization_ is _< 10%_ for at least _1_ consecutive period of _15_        
+      _minutes_" seems to work pretty well for my purposes, but you may want a longer amount of time of 
       inactivity depending on what it is you're doing.I've found that I don't work fast enough in setting 
       up my model runs to go with the 5 minute interval of inactivity for instance stopping.
 I recommend not setting an alarm until you've set everything up and have it running as setup work tends to not use much CPU.
@@ -85,7 +85,7 @@ I recommend not setting an alarm until you've set everything up and have it runn
 &nbsp;
 &nbsp;
 
-Note: If you use the free tier instance, there is only one core. This means that if you close the tab while r is running commands, you can not reload it until its finished because the instance is too busy with r tasks to respond to your requests to the server. 
+Note: If you use the free tier instance, there is only one core. This means that if you close the tab while R is running commands, you can not reload it until its finished because the instance is too busy with R tasks to respond to your requests to the server. 
 
 #**To bring in your R files from github**
 Do this exactly as you normally would when starting a project in R:
